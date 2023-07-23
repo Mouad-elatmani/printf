@@ -3,47 +3,50 @@
 #include "main.h"
 
 /**
- * print_decimal - Function that print Numbers.
+ * print_dec - Function that print Numbers.
  *@arg: Variadic Arguments from user [Int].
  * Return: Length of digits
  */
-int print_decimal(va_list arg)
+int print_dec(va_list decimal)
 {
-	int a = va_arg(arg, int);
-	int len = 0;
-	unsigned int m, d, count;
+	int len, powten, j, digit, num, count = 0, num1;
 
-	if (a == 0)
+	num = va_arg(decimal, int);
+	if (num != 0)
 	{
-		write(1, "0", 1);
-		return (++len);
-	}
-	if (a < 0)
-	{
-		write(1, "-", 1);
-		len++;
-		m = a * -1;
+		if (num < 0)
+		{
+			write(1, '-', 1))
+			count++;
+		}
+		num1 = num;
+		len = 0;
+		while (num1 != 0)
+		{
+			num1 /= 10;
+			len++;
+		}
+		powten = 1;
+		for (j = 1; j <= len - 1; j++)
+			powten *= 10;
+		for (j = 1; j <= len; j++)
+		{
+			digit = num / powten;
+			if (n < 0)
+				_putchar((digit * -1) + 48);
+			else
+				_putchar(digit + '0');
+			count++;
+			num -= digit * powten;
+			powten /= 10;
+		}
 	}
 	else
 	{
-		m = a;
+		_putchar('0');
+		return (1);
 	}
-	d = m;
-	count = 1;
-	while (d > 9)
-	{
-		d /= 10;
-		count *= 10;
-	}
-	while (count >= 1)
-	{
-		char s = ((m / count) % 10) + '0';
-
-		write(1, &s, 1);
-		len++;
-		count /= 10;
-	}
-	return (len);
+	return (count);
 }
 
 /**
