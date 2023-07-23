@@ -1,3 +1,5 @@
+#include <stdarg.h>
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -57,24 +59,24 @@ int print_char(va_list arg)
 	return (1);
 }
 /**
- * string - Function  print String.
+ *print_string - Function  print String.
  *@arg: Variadic Arguments from user [String]
  * Return: Length of string or length of chara displayhed
  */
-int string(va_list arg)
+int print_string(va_list arg)
 {
-	char *str = va_arg(arg, char*);
+	char *str;
+	int  i = 0;
 
+	str = va_arg(arg, char *);
 	if (str == NULL)
+		str = "(null)";
+	while (str[i])
 	{
-		write(1, "(null)", 6);
-		return (6);
+		write(1, str[i], 1);
+		i++;
 	}
-	else
-	{
-		write(1, str, ((int)strlen(s)));
-	}
-	return ((int)strlen(str));
+	return (i);
 }
 
 /**
