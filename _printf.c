@@ -26,23 +26,15 @@ int _printf(const char *format, ...)
 		{
 			if (format[i] == '%')
 			{
-				if (format[i + 1] == '%')
-				{
-					count += _putchar(format[i]);
-					i++;
-				}
+				m = func_select(format[i + 1]);
+				if (m)
+					count += m(list);
 				else
 				{
-					m = func_select(format[i + 1]);
-					if (m)
-						count += m(list);
-					else
-					{
-						 count += _putchar(format[i]);
-						 count += _putchar(format[i + 1]);
-					}
-					 i++;
+					 count += _putchar(format[i]);
+					 count += _putchar(format[i + 1]);
 				}
+				 i++;
 			}
 			else
 				 count += _putchar(format[i]);

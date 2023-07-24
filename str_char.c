@@ -40,14 +40,10 @@ int print_str(va_list args)
 }
 /**
  * print_percent - pass the percent sign
- * @args: va_list argument (unused)
  * Return: return the percent sign
  */
-int print_percent(va_list args)
+int print_percent()
 {
-	char c = '%';
 
-	if (va_arg(args, int) == c)
-		_putchar(c);
-	return (1);
+	return (_putchar('%'));
 }
