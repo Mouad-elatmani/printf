@@ -6,5 +6,5 @@
  */
 int print_int(va_list args)
 {
-	return (print_decimal(args));
+	return (print_decimal1(args));
 }
