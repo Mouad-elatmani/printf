@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * handle_flags - a function to know which flag exists
+ * handle_flag - a function to know which flag exists
  * @string: the string we gonna check
  * Return: flags
  */
@@ -12,19 +12,19 @@ int handle_flag(char *string)
 
 	switch (*string)
 	{
-		case '+' :
+		case '+':
 			flags |= flag_P;
 			break;
-		case '-' :
+		case '-':
 			flags |= flag_M;
-	 		break;
-		case '0' :
+			break;
+		case '0':
 			flags |= flag_Z;
 			break;
-		case '#' :
+		case '#':
 			flags |= flag_H;
-			break;		
-		case ' ' :
+			break;
+		case ' ':
 			flags |= flag_S;
 			break;
 	}
