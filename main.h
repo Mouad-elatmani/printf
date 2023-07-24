@@ -42,6 +42,11 @@ int _putchar(char c);
 int handle_unsigned(va_list args);
 int handle_octal(va_list args);
 
+/* related to task6 */
+
+int handle_pointer(va_list args);
+
+
 
 
 

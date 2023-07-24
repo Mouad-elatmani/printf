@@ -24,6 +24,8 @@ int (*func_select(char format))(va_list)
 		return (&handle_unsigned);
 	case 'o':
 		return (&handle_octal);
+	case 'p':
+		return (&handle_pointer);
 
 	default:
 		return (NULL);
