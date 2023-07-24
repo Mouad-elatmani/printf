@@ -7,6 +7,7 @@
  */
 int print_decimal(va_list arg_list)
 {
+	char helps;
 	int length, power_of_ten, j, digit, num, num_copy, count = 0;
 
 	num = va_arg(arg_list, int);
@@ -30,13 +31,16 @@ int print_decimal(va_list arg_list)
 		{
 			digit = num / power_of_ten;
 			if (num < 0)
-				_putchar((digit * -1) + '0');
+			{
+				helps = (digit * (-1)) + 48;
+				_putchar(helps);
+			}
 			else
 				 _putchar(digit + '0');
 			count++;
 			num -= digit * power_of_ten;
 			power_of_ten /= 10;
-			j++
+			j++;
 		}
 	}
 	else

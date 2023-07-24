@@ -27,6 +27,7 @@ int handle_Buff(int c);
 int handle_flags(char *string);
 int print_int(va_list args);
 int print_decimal(va_list arg_list);
+int print_decimal1(va_list arg_list);
 int print_ch(va_list args);
 int print_str(va_list args);
 int print_percent(va_list args);

@@ -13,7 +13,7 @@ int (*func_select(char format))(va_list)
 	case 's':
 		return (&print_str);
 	case 'd':
-		return (&print_decimal);
+		return (&print_decimal1);
 	case 'i':
 		return (&print_int);
 	case '%':
