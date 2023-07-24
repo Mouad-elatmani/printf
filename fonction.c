@@ -3,7 +3,7 @@
 #include "main.h"
 
 /**
- * print_i - prints integer
+ * print_integer - prints integer
  * @args: integer argument
  * Return: the decimal function
  */
@@ -14,7 +14,7 @@ int print_integer(va_list args)
 }
 /**
  * print_dec - Function that print Numbers.
- *@arg: Variadic Arguments from user [Int].
+ *@decimal: Variadic Arguments from user [Int].
  * Return: Length of digits
  */
 int print_dec(va_list decimal)
@@ -26,7 +26,7 @@ int print_dec(va_list decimal)
 	{
 		if (num < 0)
 		{
-			write(1, '-', 1))
+			write(1, '-', 1);
 			count++;
 		}
 		num_neg = num;
@@ -60,7 +60,7 @@ int print_dec(va_list decimal)
 }
 
 /**
- * ch - Function  print characters.
+ * print_char - Function  print characters.
  *@arg: Variadic Arguments from user [char]
  * Return: Length 1 that equal one character
  */
