@@ -1,31 +1,42 @@
-    #include "main.h"
-    /**
-     * print_binary - Prints an unsigned number
-     * @types: Lista of arguments
-     * Return: Numbers of char printed.
-     */
-    int print_binary(va_list types)
-    {
-        unsigned int n, max, i, sum;
-        unsigned int a[32];
-        int count;
-        n = va_arg(types, unsigned int);
-        max = 2147483648; /* (2 ^ 31) */
-        a[0] = n / max;
-        for (i = 1; i < 32; i++)
-        {
-            max /= 2;
-            a[i] = (n / max) % 2;
-        }
-        for (i = 0, sum = 0, count = 0; i < 32; i++)
-        {
-            sum += a[i];
-        if (sum || i == 31)
-        {
-            char z = '0' + a[i];
-            write(1, &z, 1);
-            count++;
-        }
-        }
-        return (count);
-    }
+#include <stdarg.h>
+#include <stdio.h>
+#include "main.h"
+/**
+* print_binary - convert to binary
+* @bin: number in decinal
+* Return: number of chars printed
+*/
+int print_binary(va_list bin)
+{
+	unsigned int len, powten, j, digit, n, num;
+	int count = 0;
+
+	n = va_arg(b, unsigned int);
+	if (n != 0)
+	{
+		num = n;
+		len = 0;
+		while (num != 0)
+		{
+			num /= 2;
+			len++;
+		}
+		powten = 1;
+		for (j = 1; j <= len - 1; j++)
+			powten *= 2;
+		for (j = 1; j <= len; j++)
+		{
+			digit = n / powten;
+			_putchar(digit + '0');
+			count++;
+			n -= digit * powten;
+			powten /= 2;
+		}
+	}
+	else
+	{
+		_putchar('0');
+		return (1);
+	}
+	return (count);
+}
