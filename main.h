@@ -40,5 +40,10 @@ int _putchar(char c);
 /* related to task3 */
 
 int handle_unsigned(va_list args);
+int handle_octal(va_list args);
+
+
+
+
 
 #endif

@@ -22,6 +22,9 @@ int (*func_select(char format))(va_list)
 		return (&print_bin);
 	case 'u':
 		return (&handle_unsigned);
+	case 'o':
+		return (&handle_octal);
+
 	default:
 		return (NULL);
 	}
