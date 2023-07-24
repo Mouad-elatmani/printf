@@ -3,6 +3,16 @@
 #include "main.h"
 
 /**
+ * print_i - prints integer
+ * @args: integer argument
+ * Return: the decimal function
+ */
+
+int print_integer(va_list args)
+{
+	return (print_dec(args));
+}
+/**
  * print_dec - Function that print Numbers.
  *@arg: Variadic Arguments from user [Int].
  * Return: Length of digits
