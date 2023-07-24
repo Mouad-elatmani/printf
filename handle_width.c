@@ -14,7 +14,7 @@ typedef struct w{
 /**
  * handle_width - calculte the width
  * @string: the string we gonna use
- * @arr: the argument pointer
+ * @arr: list of arguments
  * Return: the width
  */
 
