@@ -25,9 +25,9 @@ int handle_Buff(int c);
 #define flag_S 16
 
 int handle_flags(char *string);
-int print_decimal(va_list arg);
+int print_dec(va_list arg);
 int print_char(va_list arg);
-int string(va_list arg);
+int print_string(va_list arg);
 int print_percent(void);
 int print_binary(va_list types);
 
