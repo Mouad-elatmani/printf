@@ -32,3 +32,5 @@ int print_percent(void);
 int print_binary(va_list types);
 int print_integer(va_list args);
 
+#endif
+
