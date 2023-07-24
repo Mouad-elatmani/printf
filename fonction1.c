@@ -11,8 +11,14 @@ int print_binary(va_list bin)
 	unsigned int len, powten, j, digit, n, num;
 	int count = 0;
 
-	n = va_arg(b, unsigned int);
-	if (n != 0)
+	n = va_arg(bin, unsigned int);
+	if (n == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
+		
+	else
 	{
 		num = n;
 		len = 0;
@@ -33,10 +39,6 @@ int print_binary(va_list bin)
 			powten /= 2;
 		}
 	}
-	else
-	{
-		_putchar('0');
-		return (1);
-	}
+	
 	return (count);
 }
