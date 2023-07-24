@@ -40,3 +40,15 @@ widthData handle_width(const char *string, va_list arr)
 	widthData data = {total_width, temp - string};
 	return (data);
 }
+
+/**
+ * _digit - check if character is digit
+ * @x: the character we gonna check
+ * Return: 0 or 1
+ */
+
+/* if it didnt work we gonna use -char x- instead of -int x-*/
+int _digit(int x)
+{
+	return (x >= '0' && x <= '9');
+}
