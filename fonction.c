@@ -9,7 +9,7 @@
  */
 int print_dec(va_list decimal)
 {
-	int len, powten, j, digit, num, count = 0, num1;
+	int len, powten, j, digit, num, count = 0, num_neg;
 
 	num = va_arg(decimal, int);
 	if (num != 0)
@@ -19,11 +19,11 @@ int print_dec(va_list decimal)
 			write(1, '-', 1))
 			count++;
 		}
-		num1 = num;
+		num_neg = num;
 		len = 0;
-		while (num1 != 0)
+		while (num_neg != 0)
 		{
-			num1 /= 10;
+			num_neg /= 10;
 			len++;
 		}
 		powten = 1;
@@ -76,7 +76,7 @@ int print_string(va_list arg)
 		str = "(null)";
 	while (str[i])
 	{
-		write(1, str[i], 1);
+		_putchar(str[i]);
 		i++;
 	}
 	return (i);
