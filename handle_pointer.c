@@ -10,30 +10,24 @@ int handle_pointer(va_list args)
 {
 	unsigned long n;
 	char array[] = "0123456789abcdef";
-	int x = -1, digit, i, wc = 0;
 	void *ad = va_arg(args, void *);
+	char buff[size_of_buff];
+	int i = size_of_buff - 2;
 
 	if (!ad)
 		return (write(1, "(nil)", 5));
 
+	buff[size_of_buff - 1] = '\0';
 	n = (unsigned long)ad;
+
 	_putchar('0');
 	_putchar('x');
 
-	for (i = 15; i >= 0; --i)
+	while (n > 0)
 	{
-		digit = (n >> (4 * i)) & 0xF;
-		if (digit != 0 || i == 0)
-		{
-			x = i;
-			break;
-		}
+		buff[i--] = array[n % 16];
+		n /= 16;
 	}
-
-	for (i = x; i >= 0; --i)
-	{
-		digit = (n >> (4 * i)) & 0xF;
-		wc += _putchar(array[digit]);
-	}
-	return (wc);
+	i++;
+	return (write(1, &buff[i], size_of_buff - i - 1));
 }
