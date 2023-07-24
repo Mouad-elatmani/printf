@@ -40,10 +40,11 @@ int print_str(va_list args)
 }
 /**
  * print_percent - pass the percent sign
+ * @args: the list of arguments
  * Return: return the percent sign
  */
-int print_percent()
+int print_percent(va_list args)
 {
-
+	(void)args;
 	return (_putchar('%'));
 }
