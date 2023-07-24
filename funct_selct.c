@@ -20,6 +20,8 @@ int (*func_select(char format))(va_list)
 		return (&print_percent);
 	case 'b':
 		return (&print_bin);
+	case 'u':
+		return (&handle_unsigned);
 	default:
 		return (NULL);
 	}

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 
 /* task 0 functions */
@@ -12,7 +13,7 @@ int _printf(const char *format, ...);
 
 /*task4 */
 
-#define size_of_BUFF 1024
+#define size_of_buff 1024
 
 int handle_Buff(int c);
 
@@ -34,5 +35,10 @@ int print_percent(va_list args);
 int print_bin(va_list arg_list);
 int (*func_select(char format))(va_list);
 int _putchar(char c);
+
+
+/* related to task3 */
+
+int handle_unsigned(va_list args);
 
 #endif
