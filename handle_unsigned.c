@@ -1,44 +1,25 @@
 #include "main.h"
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <limits.h>
 
 /**
- * handle_unsigned - a function that writes signed decimal integer
- * @args:variadic arguments
- * Return:the number of characters printed
-*/
+ * handle_unsigned - a function that print an unsigned number
+ * @args: the list of arguments
+ * Return: an int hhh
+ */
+
 int handle_unsigned(va_list args)
 {
-	char n;
-	int size;
-	unsigned int t;
-	unsigned int number;
+	unsigned int n = va_arg(args, unsigned int);
+	int i = 0, j, writeCount = 0;
+	int buff[size_of_buff];
 
-	t = va_arg(args, unsigned int);
-	number = t;
-	if (t == 0)
+	if (n == 0)
+		return (_putchar('0'));
+	while (n != 0)
 	{
-		n = '0';
-		write(STDOUT_FILENO, &n, 1);
-		return (1);
+		buff[i++] = (n % 10) + '0';
+		n = n / 10;
 	}
-	size = 0;
-
-	t = 1;
-	while ((number / t) > 9)
-		t *= 10;
-
-	while (t != 0)
-	{
-		n = '0' + (number / t);
-		write(STDOUT_FILENO, &n, 1);
-		number %= t;
-		t /= 10;
-		size++;
-	}
-
-	return (size);
+	for (j = i - 1; j >= 0; j--)
+		writeCount += _putchar(buff[j]);
+	return (writeCount);
 }
