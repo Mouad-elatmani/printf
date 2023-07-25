@@ -53,8 +53,7 @@ int write_heX_number(va_list args);
 
 /*------------- */
 
-int heX_number(va_list args);
-
+int upper_heX(va_list args);
 
 
 

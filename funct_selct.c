@@ -29,7 +29,7 @@ int (*func_select(char format))(va_list)
 	case 'x':
 		return (&write_hex_number);
 	case 'X':
-		return (&heX_number);
+		return (&upper_heX);
 	case 'r':
 		return (&handle_rev);
 	case 'R':
