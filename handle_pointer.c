@@ -2,7 +2,12 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
+/**
+ * handle_pointer - a function that help to print pointer
+ * @args:variadic arguments
+ *@num : size 
+ * Return:the number of characters printed
+*/
 char *helper_xP(int bcount, unsigned long num)
 {
 	char *s = malloc(sizeof(char) * (bcount + 1));
