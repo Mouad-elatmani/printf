@@ -28,9 +28,6 @@ int print_hexa(va_list args, char array[])
 
 	wc = write(1, &buff[i], size_of_buff - 1 - i);
 
-	if (wc == -1)
-		return (-1);
-
 	return (wc);
 }
 
