@@ -1,11 +1,4 @@
 #include "main.h"
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdio.h>
-#include <limits.h>
 
 /**
  * helper_X - a function that helps
