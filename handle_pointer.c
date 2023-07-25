@@ -3,33 +3,33 @@
 #include <stdlib.h>
 #include <stdio.h>
 /**
- * helper_xP - a function that help to print pointer
- * @num: the number we gonna use
- * @bcount: a parameter number 1
- * Return: the character
+ * p_handler - a function that help to print pointer
+ * @n: the number we gonna use
+ * @wc: a parameter number 1
+ * Return: apointer to char
 */
 
-char *helper_xP(int bcount, unsigned long num)
+char *p_handler(int wc, unsigned long n)
 {
-	char *s = malloc(sizeof(char) * (bcount + 1));
-	int rem;
+	char *buff = malloc(sizeof(char) * (wc + 1));
+	int a;
 	char *ptr;
 
-	if (s == NULL)
+	if (!buff)
 		return (NULL);
 
-	s[bcount] = '\0';
+	buff[wc] = '\0';
 
-	ptr = s + bcount - 1;
+	ptr = buff + wc - 1;
 
-	while (num > 0)
+	while (n > 0)
 	{
-		rem = num % 16;
-		*ptr-- = (rem > 9) ? ('a' + (rem - 10)) : ('0' + rem);
-		num /= 16;
+		a = n % 16;
+		*ptr-- = (a > 9) ? ('a' + (a - 10)) : ('0' + a);
+		n /= 16;
 	}
 
-	return (s);
+	return (buff);
 }
 
 
@@ -40,25 +40,25 @@ char *helper_xP(int bcount, unsigned long num)
 */
 int handle_pointer(va_list args)
 {
-	unsigned long num = (unsigned long) va_arg(args, void *);
-	char *s;
-	unsigned long temp;
-	int bcount = 0;
+	unsigned long n = (unsigned long) va_arg(args, void *);
+	char *buff;
+	unsigned long x;
+	int wc = 0;
 
-	if (num == 0)
+	if (n == 0)
 		return (write(STDOUT_FILENO, "(nil)", 5));
 
-	for (temp = num; temp != 0; temp /= 16)
-		bcount++;
+	for (x = n; x != 0; x /= 16)
+		wc++;
 
-	s = helper_xP(bcount, num);
+	buff = p_handler(wc, n);
 
-	if (s == NULL)
+	if (buff == NULL)
 		return (0);
 
 	write(STDOUT_FILENO, "0x", 2);
-	write(STDOUT_FILENO, s, bcount);
+	write(STDOUT_FILENO, buff, wc);
 
-	free(s);
-	return (bcount + 2);
+	free(buff);
+	return (wc + 2);
 }
