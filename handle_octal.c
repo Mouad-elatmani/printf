@@ -13,30 +13,30 @@
  */
 int handle_octal(va_list args)
 {
-	unsigned int temp, bcount = 0, num = va_arg(args, unsigned int);
-	char binary, *s;
+	unsigned int a, wc = 0, n = va_arg(args, unsigned int);
+	char x, *txt;
 	int i;
 
-	if (num == 1 || num == 0)
+	if (n == 1 || n == 0)
 	{
-		binary = '0' + num;
-		write(STDOUT_FILENO, &binary, 1);
+		x = '0' + n;
+		write(STDOUT_FILENO, &x, 1);
 		return (1);
 	}
-	for (temp = num; temp != 0; temp /= 8)
-		bcount++;
-	s = malloc(sizeof(char) * bcount + 1);
-	if (s == NULL)
+	for (a = n; a != 0; a /= 8)
+		wc++;
+	txt = malloc(sizeof(char) * wc + 1);
+	if (!txt)
 		return (0);
-	for (i = bcount - 1; i >= 0; i--)
+	for (i = wc - 1; i >= 0; i--)
 	{
-		binary = (num % 8) + '0';
-		s[i] = binary;
-		num /= 8;
+		x = (n % 8) + '0';
+		txt[i] = x;
+		n /= 8;
 	}
-	s[bcount] = '\0';
-	bcount = write(STDOUT_FILENO, s, bcount);
-	free(s);
-	return (bcount);
+	txt[wc] = '\0';
+	wc = write(STDOUT_FILENO, txt, wc);
+	free(txt);
+	return (wc);
 }
 
