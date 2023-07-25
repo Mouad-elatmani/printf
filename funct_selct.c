@@ -26,6 +26,11 @@ int (*func_select(char format))(va_list)
 		return (&handle_octal);
 	case 'p':
 		return (&handle_pointer);
+	case 'x':
+		return (&lower_hexa);
+	case 'X':
+		return (&upper_hexa);
+
 
 	default:
 		return (NULL);
