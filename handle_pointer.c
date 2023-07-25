@@ -27,6 +27,6 @@ int handle_pointer(va_list list)
 	res = (unsigned long int)pointer;
 	_putchar('0');
 	_putchar('x');
-	number = appelfonction_hex(res);
+	number = lower_hexa(res);
 	return (number + 2);
 }
