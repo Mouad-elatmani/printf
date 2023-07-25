@@ -1,53 +1,36 @@
 #include "main.h"
 
 /**
- * lower_hex - a function that writes signed hexadecimal integer
- * @args:variadic arguments
- * Return:the number of characters printed
-*/
+ * lower_hex - function that writes signed hexadecimal integer
+ * @args: variadic arguments
+ * Return: the number of characters printed
+ */
 int lower_hex(va_list args)
 {
-    unsigned int temp, bcount, num;
-   int reminder, i;
+    unsigned int num = va_arg(args, unsigned int);
+    unsigned int temp = num, bcount = 0;
+    int reminder, i;
     char binary, *s;
 
-    num = va_arg(args, unsigned int);
-
-    if (num == 1 || num == 0)
-    {
+    if (num < 2) {
         binary = '0' + num;
         write(STDOUT_FILENO, &binary, 1);
         return (1);
     }
 
-    temp = num;
-    bcount = 0;
-    while (temp != 0)
-    {
-        temp = temp / 16;
-        bcount++;
-    }
-
-    s  = malloc(sizeof(char) * (bcount + 1));
-    if (s == NULL)
-        return (0);
+    while (temp) { temp /= 16; bcount++; }
     
-    for (i = bcount - 1; i != -1; i--)
-    {
+    if (!(s  = malloc(sizeof(char) * (bcount + 1)))) return (0);
+    
+    for (i = bcount - 1; i >= 0; i--, num /= 16) {
         reminder = num % 16;
-
-        if (reminder > 9)
-            binary = (reminder - 10) + 'A';
-        else
-            binary = reminder + '0';
-        s[i] = binary;
-        num = num / 16;
+        s[i] = (reminder > 9) ? (reminder - 10) + 'a' : reminder + '0';
     }
-
+    
     s[bcount] = '\0';
-
-    bcount =  write(STDOUT_FILENO, s, bcount);
+    bcount = write(STDOUT_FILENO, s, bcount);
     free(s);
-    return (bcount);
+
+    return bcount;
 }
 
