@@ -1,33 +1,77 @@
 #include "main.h"
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdio.h>
+#include <limits.h>
+
 
 /**
- * handle_pointer - a function tha print a pointer
- * @args: list of arguments
- * Return: an int hhh
- */
+ * helper_xP - a function that helps
+ * @bcount: count
+ * @num: num
+ * Return:nothing
+*/
+char *helper_xP(int bcount, unsigned long num)
+{
+	int reminder, i;
+	char binary, *s;
 
+	s  = malloc(sizeof(char) * bcount + 1);
+	if (s == NULL)
+		return (s);
+	for (i = bcount - 1; i != -1; i--)
+	{
+		reminder = num % 16;
+
+		if (reminder > 9)
+			binary = (reminder - 10) + 'a';
+		else
+			binary = reminder + '0';
+		s[i] = binary;
+		num = num / 16;
+	}
+	s[bcount] = '\0';
+
+	return (s);
+}
+
+/**
+ * handle_pointer - a function that writes signed hexadecimal integer
+ * @args:variadic arguments
+ * Return:the number of characters printed
+*/
 int handle_pointer(va_list args)
 {
-	unsigned long n;
-	char array[] = "0123456789abcdef";
-	void *ad = va_arg(args, void *);
-	char buff[size_of_buff];
-	int i = size_of_buff - 2;
 
-	if (!ad)
-		return (write(1, "(nil)", 5));
+	unsigned long  num, temp;
+	int bcount;
+	char *s;
 
-	buff[size_of_buff - 1] = '\0';
-	n = (unsigned long)ad;
-
-	_putchar('0');
-	_putchar('x');
-
-	while (n > 0)
+	bcount = 0;
+	num = (unsigned long) va_arg(args, void *);
+	if (num == 0)
 	{
-		buff[i--] = array[n % 16];
-		n /= 16;
+		bcount += write(STDOUT_FILENO, "(nil)", 5);
+		return (bcount);
 	}
-	i++;
-	return (write(1, &buff[i], size_of_buff - i - 1));
+	bcount += write(STDOUT_FILENO, "0x", 2);
+	temp = num;
+	bcount = 0;
+	while (temp != 0)
+	{
+		temp = temp / 16;
+		bcount++;
+	}
+	s = helper_xP((bcount), num);
+	if (s == NULL)
+		return (0);
+
+
+	bcount =  write(STDOUT_FILENO, s, bcount);
+	free(s);
+
+	return (bcount + 2);
 }
