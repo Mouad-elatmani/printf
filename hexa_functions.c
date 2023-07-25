@@ -11,6 +11,7 @@ int print_hexa(va_list argumentsn, char array[])
 {
     unsigned int num, temp;
     int count = 0;
+     char hex_value[count];
 
     num = va_arg(arguments, unsigned int);
     if (num == 0)
@@ -26,7 +27,7 @@ int print_hexa(va_list argumentsn, char array[])
         count++;
     }
 
-    char hex_value[count];
+    
 
     while (count > 0)
     {
