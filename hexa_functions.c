@@ -7,31 +7,40 @@
  * Return: return wc
  */
 
-int print_hexa(va_list args, char array[])
+int print_hexa(va_list argumentsn, char array[])
 {
-	int i = size_of_buff - 2, wc;
-	unsigned long int n = va_arg(args, unsigned long int);
-	char buff[size_of_buff];
+    unsigned int num, temp;
+    int count = 0;
 
-	if (n == 0)
-		buff[i--] = '0';
+    num = va_arg(arguments, unsigned int);
+    if (num == 0)
+    {
+        _putchar('0');
+        return (1);
+    }
 
-	buff[size_of_buff - 1] = '\0';
+    temp = num;
+    while (temp != 0)
+    {
+        temp /= 16;
+        count++;
+    }
 
-	while (n > 0)
-	{
-		buff[i--] = array[n % 16];
-		n /= 16;
-	}
+    char hex_value[count];
 
-	i++;
+    while (count > 0)
+    {
+        count--;
+        hex_value[count] = array[num % 16];
+        num /= 16;
+    }
 
-	wc = write(1, &buff[i], size_of_buff - 1 - i);
+    for (int i = 0; i < sizeof(hex_value); i++)
+    {
+        _putchar(hex_value[i]);
+    }
 
-	if (wc == -1)
-		return (-1);
-
-	return (wc);
+    return sizeof(hex_value);
 }
 
 /**
