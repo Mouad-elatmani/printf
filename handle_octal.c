@@ -4,49 +4,18 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
-#include <stdio.h>
 #include <limits.h>
 
-/**
- * helper_o - a function that helps
- * @bcount: count
- * @num: num
- * Return:nothing
-*/
-char *helper_o(int bcount, unsigned int num)
-{
-	int reminder, i;
-	char binary, *s;
-
-	s  = malloc(sizeof(char) * bcount + 1);
-	if (s == NULL)
-		return (s);
-	for (i = bcount - 1; i != -1; i--)
-	{
-		reminder = num % 8;
-		binary = reminder + '0';
-		s[i] = binary;
-		num = num / 8;
-	}
-
-	s[0] = binary;
-	if (s[0] == '0')
-		s[0] = '1';
-	s[bcount] = '\0';
-
-	return (s);
-}
 /**
  * handle_octal - a function that writes signed octal integer
  * @args:variadic arguments
  * Return:the number of characters printed
-*/
+ */
 int handle_octal(va_list args)
 {
-	unsigned int temp, bcount, num;
+	unsigned int temp, bcount = 0, num = va_arg(args, unsigned int);
 	char binary, *s;
-
-	num = va_arg(args, unsigned int);
+	int i;
 
 	if (num == 1 || num == 0)
 	{
@@ -54,20 +23,20 @@ int handle_octal(va_list args)
 		write(STDOUT_FILENO, &binary, 1);
 		return (1);
 	}
-
-	temp = num;
-	bcount = 0;
-	while (temp != 0)
-	{
-		temp = temp / 8;
+	for (temp = num; temp != 0; temp /= 8)
 		bcount++;
-	}
-	s = helper_o((bcount), num);
+	s = malloc(sizeof(char) * bcount + 1);
 	if (s == NULL)
 		return (0);
-
-
-	bcount =  write(STDOUT_FILENO, s, bcount);
+	for (i = bcount - 1; i >= 0; i--)
+	{
+		binary = (num % 8) + '0';
+		s[i] = binary;
+		num /= 8;
+	}
+	s[bcount] = '\0';
+	bcount = write(STDOUT_FILENO, s, bcount);
 	free(s);
 	return (bcount);
 }
+
