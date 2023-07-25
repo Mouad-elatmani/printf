@@ -1,5 +1,32 @@
 #include "main.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+
+char *helper_xP(int bcount, unsigned long num)
+{
+	char *s = malloc(sizeof(char) * (bcount + 1));
+	int rem;
+	char *ptr;
+
+	if (s == NULL)
+		return (NULL);
+
+	s[bcount] = '\0';
+
+	ptr = s + bcount - 1;
+
+	while (num > 0)
+	{
+		rem = num % 16;
+		*ptr-- = (rem > 9) ? ('a' + (rem - 10)) : ('0' + rem);
+		num /= 16;
+	}
+
+	return (s);
+}
+
+
 /**
  * handle_pointer - a function that writes signed hexadecimal integer
  * @args:variadic arguments
@@ -8,30 +35,25 @@
 int handle_pointer(va_list args)
 {
 	unsigned long num = (unsigned long) va_arg(args, void *);
-	int bcount = 0, i, rem;
 	char *s;
+	int bcount;
 	unsigned long temp;
 
 	if (num == 0)
-		return (write(STDOUT_FILENO, "(nil)", 5) + 2);
+	return (write(STDOUT_FILENO, "(nil)", 5));
 
 	for (temp = num; temp != 0; temp /= 16)
 		bcount++;
 
-	s  = malloc(sizeof(char) * bcount + 1);
+	s = helper_xP(bcount, num);
+
 	if (s == NULL)
-		return (NULL);
+		return (0);
 
-	for (i = bcount - 1; i >= 0; i--, num /= 16)
-	{
-		rem = num % 16;
-		s[i] = rem + ((rem > 9) ? 'a' - 10 : '0');
-	}
+	write(STDOUT_FILENO, "0x", 2);
+	write(STDOUT_FILENO, s, bcount);
 
-	s[bcount] = '\0';
-	bcount =  write(STDOUT_FILENO, "0x", 2) + write(STDOUT_FILENO, s, bcount);
 	free(s);
-
-	return (bcount);
+	return (bcount + 2);
 }
 
