@@ -30,6 +30,8 @@ int (*func_select(char format))(va_list)
 		return (&write_hex_number);
 	case 'X':
 		return (&write_heX_number);
+	case 'r':
+		return (&handle_rev);
 
 
 	default:
