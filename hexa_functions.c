@@ -7,11 +7,11 @@
  * Return: return wc
  */
 
-int print_hexa(va_list argumentsn, char array[])
+int print_hexa(va_list arguments, char array[])
 {
     unsigned int num, temp;
-    int count = 0;
-     char hex_value[count];
+    int count = 0, i;
+     char hex_value[1024];
 
     num = va_arg(arguments, unsigned int);
     if (num == 0)
@@ -36,7 +36,7 @@ int print_hexa(va_list argumentsn, char array[])
         num /= 16;
     }
 
-    for (int i = 0; i < count; i++)
+    for (i = 0; i < count; i++)
     {
         _putchar(hex_value[i]);
     }
