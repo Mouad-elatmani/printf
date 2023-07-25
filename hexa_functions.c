@@ -35,12 +35,12 @@ int print_hexa(va_list argumentsn, char array[])
         num /= 16;
     }
 
-    for (int i = 0; i < sizeof(hex_value); i++)
+    for (int i = 0; i < count; i++)
     {
         _putchar(hex_value[i]);
     }
 
-    return sizeof(hex_value);
+    return (count);
 }
 
 /**
