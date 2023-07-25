@@ -27,9 +27,9 @@ int (*func_select(char format))(va_list)
 	case 'p':
 		return (&handle_pointer);
 	case 'x':
-		return (&lower_hexa);
+		return (&write_hex_number);
 	case 'X':
-		return (&upper_hexa);
+		return (&write_heX_number);
 
 
 	default:

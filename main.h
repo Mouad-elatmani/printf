@@ -44,7 +44,11 @@ int handle_octal(va_list args);
 int print_hexa(va_list args, char array[]);
 int lower_hexa(va_list args);
 int upper_hexa(va_list args);
-
+/* --------------*/
+char *helper_x(int bcount, unsigned int num);
+int write_hex_number(va_list args);
+char *helper_X(int bcount, unsigned int num);
+int write_heX_number(va_list args);
 
 /* related to task6 */
 
