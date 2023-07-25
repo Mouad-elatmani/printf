@@ -6,28 +6,27 @@
  * Return: an int hhh
  */
 
-int handle_pointer(va_list args)
+int handle_pointer(va_list list)
 {
-	unsigned long n;
-	char array[] = "0123456789abcdef";
-	void *ad = va_arg(args, void *);
-	char buff[size_of_buff];
-	int i = size_of_buff - 2;
+	void *pointer;
+	char *s = "(nil)";
+	long int res;
+	int number;
+	int i;
 
-	if (!ad)
-		return (write(1, "(nil)", 5));
+	pointer = va_arg(list, void*);
+	if (pointer == NULL)
+	{
+		for (i = 0; s[i] != '\0'; i++)
+		{
+			_putchar(s[i]);
+		}
+		return (i);
+	}
 
-	buff[size_of_buff - 1] = '\0';
-	n = (unsigned long)ad;
-
+	res = (unsigned long int)pointer;
 	_putchar('0');
 	_putchar('x');
-
-	while (n > 0)
-	{
-		buff[i--] = array[n % 16];
-		n /= 16;
-	}
-	i++;
-	return (write(1, &buff[i], size_of_buff - i - 1));
+	number = appelfonction_hex(res);
+	return (number + 2);
 }
