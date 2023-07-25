@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * heX_number- a function that writes signed hexadecimal integer
+ * lower_hex - a function that writes signed hexadecimal integer
  * @args:variadic arguments
  * Return:the number of characters printed
 */
-int heX_number(va_list args)
+int lower_hex(va_list args)
 {
     unsigned int temp, bcount, num;
    int reminder, i;
