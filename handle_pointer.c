@@ -20,7 +20,7 @@ int handle_pointer(va_list args)
 
 	s  = malloc(sizeof(char) * bcount + 1);
 	if (s == NULL)
-		return (0);
+		return (NULL);
 
 	for (i = bcount - 1; i >= 0; i--, num /= 16)
 	{
