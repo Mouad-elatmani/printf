@@ -3,11 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 /**
- * handle_pointer - a function that help to print pointer
- * @args:variadic arguments
- *@num : size 
- * Return:the number of characters printed
+ * helper_xP - a function that help to print pointer
+ * @num: the number we gonna use
+ * @bcount: a parameter number 1
+ * Return: the character
 */
+
 char *helper_xP(int bcount, unsigned long num)
 {
 	char *s = malloc(sizeof(char) * (bcount + 1));
@@ -39,26 +40,32 @@ char *helper_xP(int bcount, unsigned long num)
 */
 int handle_pointer(va_list args)
 {
-	unsigned long num = (unsigned long) va_arg(args, void *);
-	char *s;
+	unsigned long  num, temp;
 	int bcount;
-	unsigned long temp;
+	char *s;
 
+	bcount = 0;
+	num = (unsigned long) va_arg(args, void *);
 	if (num == 0)
-	return (write(STDOUT_FILENO, "(nil)", 5));
-
-	for (temp = num; temp != 0; temp /= 16)
+	{
+		bcount += write(STDOUT_FILENO, "(nil)", 5);
+		return (bcount);
+	}
+	bcount += write(STDOUT_FILENO, "0x", 2);
+	temp = num;
+	bcount = 0;
+	while (temp != 0)
+	{
+		temp = temp / 16;
 		bcount++;
-
-	s = helper_xP(bcount, num);
-
+	}
+	s = helper_xP((bcount), num);
 	if (s == NULL)
 		return (0);
 
-	write(STDOUT_FILENO, "0x", 2);
-	write(STDOUT_FILENO, s, bcount);
 
+	bcount =  write(STDOUT_FILENO, s, bcount);
 	free(s);
+
 	return (bcount + 2);
 }
-
