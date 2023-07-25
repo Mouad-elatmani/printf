@@ -26,7 +26,6 @@ int _printf(const char *format, ...)
 		{
 			if (format[i] == '%')
 			{
-				
 				m = func_select(format[i + 1]);
 				if (m)
 					count += m(list);
