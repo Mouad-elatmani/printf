@@ -10,6 +10,8 @@
  * @format: string with format specifier
  * Return: number of characters printed
  */
+
+
 int _printf(const char *format, ...)
 {
         int i, count = 0;
@@ -24,15 +26,23 @@ int _printf(const char *format, ...)
                 {
                         if (format[i] == '%')
                         {
-                                m = func_select(format[i + 1]);
-                                if (m)
-                                        count += m(list);
+                                if (format[i + 1] == '%')
+                                {
+                                        count += _putchar(format[i]);
+                                        i++;
+                                }
                                 else
                                 {
-                                         count += _putchar(format[i]);
-                                         count += _putchar(format[i + 1]);
+                                        m = func_select(format[i + 1]);
+                                        if (m)
+                                                count += m(list);
+                                        else
+                                        {
+                                                 count += _putchar(format[i]);
+                                                 count += _putchar(format[i + 1]);
+                                        }
+                                         i++;
                                 }
-                                 i++;
                         }
                         else
                                  count += _putchar(format[i]);
