@@ -1,29 +1,73 @@
 #include "main.h"
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdio.h>
+#include <limits.h>
 
 /**
- * handle_octal - a function that print octal
- * @args: the list of arguments
- * Return: an int hhh
- */
+ * helper_o - a function that helps
+ * @bcount: count
+ * @num: num
+ * Return:nothing
+*/
+char *helper_o(int bcount, unsigned int num)
+{
+	int reminder, i;
+	char binary, *s;
 
+	s  = malloc(sizeof(char) * bcount + 1);
+	if (s == NULL)
+		return (s);
+	for (i = bcount - 1; i != -1; i--)
+	{
+		reminder = num % 8;
+		binary = reminder + '0';
+		s[i] = binary;
+		num = num / 8;
+	}
+
+	s[0] = binary;
+	if (s[0] == '0')
+		s[0] = '1';
+	s[bcount] = '\0';
+
+	return (s);
+}
+/**
+ * handle_octal - a function that writes signed octal integer
+ * @args:variadic arguments
+ * Return:the number of characters printed
+*/
 int handle_octal(va_list args)
 {
-	unsigned long int n = va_arg(args, unsigned long int);
-	int i = 0, wc = 0, j;
-	int buff[size_of_buff];
+	unsigned int temp, bcount, num;
+	char binary, *s;
 
-	if (n == 0)
-		return (_putchar('0'));
+	num = va_arg(args, unsigned int);
 
-	while (n != 0)
+	if (num == 1 || num == 0)
 	{
-		buff[i] = n % 8;
-		n /= 8;
-		i++;
+		binary = '0' + num;
+		write(STDOUT_FILENO, &binary, 1);
+		return (1);
 	}
-	for (j = i - 1; j >= 0; j--)
+
+	temp = num;
+	bcount = 0;
+	while (temp != 0)
 	{
-		wc += _putchar('0' + buff[j]);
+		temp = temp / 8;
+		bcount++;
 	}
-	return (wc);
+	s = helper_o((bcount), num);
+	if (s == NULL)
+		return (0);
+
+
+	bcount =  write(STDOUT_FILENO, s, bcount);
+	free(s);
+	return (bcount);
 }
