@@ -74,14 +74,7 @@ int write_heX_number(va_list args)
 }
 
 
-#include "main.h"
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdio.h>
-#include <limits.h>
+
 
 /**
  * helper_x - a function that helps
