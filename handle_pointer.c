@@ -40,32 +40,25 @@ char *helper_xP(int bcount, unsigned long num)
 */
 int handle_pointer(va_list args)
 {
-	unsigned long  num, temp;
-	int bcount;
+	unsigned long num = (unsigned long) va_arg(args, void *);
 	char *s;
+	unsigned long temp;
+	int bcount = 0;
 
-	bcount = 0;
-	num = (unsigned long) va_arg(args, void *);
 	if (num == 0)
-	{
-		bcount += write(STDOUT_FILENO, "(nil)", 5);
-		return (bcount);
-	}
-	bcount += write(STDOUT_FILENO, "0x", 2);
-	temp = num;
-	bcount = 0;
-	while (temp != 0)
-	{
-		temp = temp / 16;
+		return (write(STDOUT_FILENO, "(nil)", 5));
+
+	for (temp = num; temp != 0; temp /= 16)
 		bcount++;
-	}
-	s = helper_xP((bcount), num);
+
+	s = helper_xP(bcount, num);
+
 	if (s == NULL)
 		return (0);
 
+	write(STDOUT_FILENO, "0x", 2);
+	write(STDOUT_FILENO, s, bcount);
 
-	bcount =  write(STDOUT_FILENO, s, bcount);
 	free(s);
-
 	return (bcount + 2);
 }
