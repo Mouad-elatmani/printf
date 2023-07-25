@@ -7,30 +7,35 @@
  */
 int lower_hex(va_list args)
 {
-    unsigned int num = va_arg(args, unsigned int);
-    unsigned int temp = num, bcount = 0;
-    int reminder, i;
-    char binary, *s;
+	unsigned int n = va_arg(args, unsigned int);
+	unsigned int x = n, wc = 0;
+	int a, i;
+	char c, *txt;
 
-    if (num < 2) {
-        binary = '0' + num;
-        write(STDOUT_FILENO, &binary, 1);
-        return (1);
-    }
+	if (n < 2)
+	{
+		c = '0' + n;
+		write(STDOUT_FILENO, &c, 1);
+		return (1);
+	}
 
-    while (temp) { temp /= 16; bcount++; }
-    
-    if (!(s  = malloc(sizeof(char) * (bcount + 1)))) return (0);
-    
-    for (i = bcount - 1; i >= 0; i--, num /= 16) {
-        reminder = num % 16;
-        s[i] = (reminder > 9) ? (reminder - 10) + 'a' : reminder + '0';
-    }
-    
-    s[bcount] = '\0';
-    bcount = write(STDOUT_FILENO, s, bcount);
-    free(s);
+	while (x)
+	{
+		x /= 16;
+		wc++;
+	}
+	txt  = malloc(sizeof(char) * (wc + 1));
+	if (!txt)
+		return (0);
+	for (i = wc - 1; i >= 0; i--, n /= 16)
+	{
+		a = n % 16;
+		txt[i] = (a > 9) ? (a - 10) + 'a' : a + '0';
+	}
 
-    return bcount;
+	txt[wc] = '\0';
+	wc = write(STDOUT_FILENO, txt, wc);
+	free(txt);
+
+	return (wc);
 }
-
