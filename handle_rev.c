@@ -16,8 +16,12 @@ int handle_rev(va_list args)
 		for (size = 0; *txt; txt++)
 			size++;
 		txt--;
-		for (; size > 0; size--, txt--)
+		while (size > 0)
+		{
 			count += _putchar(*txt);
+			size--;
+			txt--;
+		}
 	}
 	return (count);
 }
