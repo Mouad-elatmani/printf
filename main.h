@@ -58,6 +58,10 @@ int handle_pointer(va_list args);
 
 int handle_rev(va_list args);
 
+/*related to task14*/
+
+int handle_rot(va_list args);
+
 
 
 

@@ -32,7 +32,8 @@ int (*func_select(char format))(va_list)
 		return (&write_heX_number);
 	case 'r':
 		return (&handle_rev);
-
+	case 'R':
+		return (&handle_rot);
 
 	default:
 		return (NULL);
