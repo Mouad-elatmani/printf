@@ -7,9 +7,8 @@
 */
 int handle_pointer(va_list args)
 {
-
 	unsigned long num = (unsigned long) va_arg(args, void *);
-	int bcount = 0, i;
+	int bcount = 0, i, rem;
 	char *s;
 	unsigned long temp;
 
@@ -24,7 +23,10 @@ int handle_pointer(va_list args)
 		return (0);
 
 	for (i = bcount - 1; i >= 0; i--, num /= 16)
-		s[i] = num % 16 + ((num % 16 > 9) ? 'a' - 10 : '0');
+	{
+		rem = num % 16;
+		s[i] = rem + ((rem > 9) ? 'a' - 10 : '0');
+	}
 
 	s[bcount] = '\0';
 	bcount =  write(STDOUT_FILENO, "0x", 2) + write(STDOUT_FILENO, s, bcount);
