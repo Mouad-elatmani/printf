@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 				if (format[i + 1] == '%')
 				{
 					count += _putchar(format[i]);
-					i += 2;
+					i++;
 				}
 				else 
 				{
@@ -40,7 +40,7 @@ int _printf(const char *format, ...)
 				{
 					 count += _putchar(format[i]);
 					 count += _putchar(format[i + 1]);
-					i += 2;
+					i++;
 				}
 				}
 				 
@@ -49,7 +49,7 @@ int _printf(const char *format, ...)
 			{
 				 count += _putchar(format[i]);
 				i++
-					}
+			}
 		}
 		va_end(list);
 		return (count);
