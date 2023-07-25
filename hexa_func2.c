@@ -31,11 +31,11 @@ char *helper_X(int bcount, unsigned int num)
 	return (s);
 }
 /**
- * write_heX_number- a function that writes signed hexadecimal integer
+ * heX_number- a function that writes signed hexadecimal integer
  * @args:variadic arguments
  * Return:the number of characters printed
 */
-int write_heX_number(va_list args)
+int heX_number(va_list args)
 {
 	unsigned int temp, bcount, num;
 	char binary, *s;
