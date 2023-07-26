@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 /* task 0 functions */
 
