@@ -34,7 +34,8 @@ int (*func_select(char format))(va_list)
 		return (&handle_rev);
 	case 'R':
 		return (&handle_rot);
-
+	case 'S':
+		return (&handle_S);
 	default:
 		return (NULL);
 	}

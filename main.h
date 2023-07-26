@@ -41,9 +41,6 @@ int _putchar(char c);
 
 int handle_unsigned(va_list args);
 int handle_octal(va_list args);
-int print_hexa(va_list args, char array[]);
-int lower_hexa(va_list args);
-int upper_hexa(va_list args);
 /* --------------*/
 
 
@@ -65,6 +62,9 @@ int handle_rev(va_list args);
 /*related to task14*/
 
 int handle_rot(va_list args);
+
+/* related to task5 */
+int handle_S(va_list args);
 
 
 
